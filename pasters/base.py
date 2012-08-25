@@ -75,7 +75,7 @@ class BasePaster(object):
 
 	def paste(self):
 		"""Contains the logic to post the content, you can use the httpRequest to make you life easier"""
-		raise Exception('This method has to be implemented')
+		return self.prepare()
 
 	def prepare(self):
 		"""
@@ -176,5 +176,6 @@ class BasePaster(object):
 		['pascal', 'pas'],
 		['perl', 'pl'],
 		['yaml', 'yml'],
-		['csharp', 'cs']
+		['csharp', 'cs'],
+		['apache', 'apacheconf']
 	]
