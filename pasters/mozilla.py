@@ -37,12 +37,12 @@ class MozillaPaster(BasePaster):
 
 	def prepare_ttl(self):
 		ttl = self.ttl()
-		if ttl == None:
-			return 'f'
 		if ttl <= 60 * 24:
 			return 'd'
-		else:
+		elif ttl <= 60 * 24 * 31:
 			return 'm'
+		else:
+			return 'f'
 
 	syntaxes = [
 		'bash',

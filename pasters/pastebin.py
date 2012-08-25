@@ -53,16 +53,16 @@ class PastebinPaster(BasePaster):
 
 	def prepare_ttl(self):
 		ttl = self.ttl()
-		if ttl == None:
-			return 'N'
-		elif ttl <= 10:
+		if ttl <= 10:
 			return '10M'
 		elif ttl <= 60:
 			return '1H'
 		elif ttl <= 60 * 24:
 			return '1D'
-		else:
+		elif ttl <= 60 * 24 * 31:
 			return '1M'
+		else:
+			return 'N'
 
 	syntaxes = [
 	   	'4cs',

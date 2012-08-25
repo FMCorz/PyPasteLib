@@ -11,6 +11,7 @@ class BasePaster(object):
 	_texts = None
 	_private = None
 	_description = None
+	_poster = None
 	_settings = None
 	_syntax = None
 	_ttl = None
@@ -129,11 +130,11 @@ class BasePaster(object):
 	def reset(self):
 		"""Resets to default"""
 		self._texts = []
-		self._poster = ''
+		self._poster = 'Anonymous'
 		self._private = False
 		self._description = ''
 		self._syntax = None
-		self._ttl = None
+		self._ttl = 60 * 24 * 30
 
 	def setting(self, name, default = None):
 		"""Reads the plugin settings"""
