@@ -12,7 +12,7 @@ class MozillaPaster(BasePaster):
 
 	def paste(self):
 		data = {
-			'poster': self.setting('poster', 'Paster'),
+			'poster': self.poster(),
 			'format': self.prepare_syntax(keepWhenMissing = False),
 			'expiry': self.prepare_ttl(),
 			'code2': self.prepare(),

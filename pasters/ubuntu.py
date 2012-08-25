@@ -12,7 +12,7 @@ class UbuntuPaster(BasePaster):
 
 	def paste(self):
 		data = {
-			'poster': self.setting('poster', 'Paster'),
+			'poster': self.poster(),
 			'syntax': self.prepare_syntax(keepWhenMissing = False),
 			'content': self.prepare()
 		}

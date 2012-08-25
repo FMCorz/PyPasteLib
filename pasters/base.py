@@ -19,6 +19,7 @@ class BasePaster(object):
 	def __init__(self, **kwargs):
 		self.reset()
 		self.description(kwargs.get('description'))
+		self.poster(kwargs.get('poster'))
 		self.syntax(kwargs.get('syntax'))
 		self.private(kwargs.get('private'))
 		self.ttl(kwargs.get('ttl'))
@@ -77,6 +78,12 @@ class BasePaster(object):
 		"""Contains the logic to post the content, you can use the httpRequest to make you life easier"""
 		return self.prepare()
 
+	def poster(self, poster = None):
+		"""Set/Get the poster of the paste"""
+		if poster == None:
+			return self._poster
+		self._poster = poster
+
 	def prepare(self):
 		"""
 		Formats the content to be sent. This has to be extended.
@@ -122,6 +129,7 @@ class BasePaster(object):
 	def reset(self):
 		"""Resets to default"""
 		self._texts = []
+		self._poster = ''
 		self._private = False
 		self._description = ''
 		self._syntax = None
@@ -170,7 +178,7 @@ class BasePaster(object):
 		['objectivec', 'objective-c', 'objc', 'm'],
 		['actionscript', 'as', 'actionscript3', 'as3'],
 		['ruby', 'rb', 'ror', 'ruby_on_rails', 'erb'],
-		['html', 'xml', 'htm'],
+		['html', 'xml', 'htm', 'html4strict'],
 		['shell', 'sh', 'bash'],
 		['python', 'py'],
 		['pascal', 'pas'],
