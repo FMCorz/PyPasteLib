@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import urllib
 from base import BasePaster
 
 class RawPaster(BasePaster):
