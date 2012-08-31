@@ -14,7 +14,7 @@ class PasteePaster(BasePaster):
 		data = {
 	    	'lexer': self.prepare_syntax(),
 	        'content': self.prepare(),
-	        'ttl': self.prepare_ttl()
+	        'ttl': self.ttl() * 60
 		}
 
 		if self.password():
@@ -42,9 +42,6 @@ class PasteePaster(BasePaster):
 
 		print resp.status, resp.reason
 		return False
-
-	def prepare_ttl(self):
-		return self.ttl() * 60
 
 	syntaxes = [
 		'c',
