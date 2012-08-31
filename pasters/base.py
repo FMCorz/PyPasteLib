@@ -15,6 +15,7 @@ class BasePaster(object):
 	_settings = None
 	_syntax = None
 	_ttl = None
+	_password = None
 	_defaultSyntax = 'txt'
 
 	def __init__(self, **kwargs):
@@ -24,6 +25,7 @@ class BasePaster(object):
 		self.syntax(kwargs.get('syntax'))
 		self.private(kwargs.get('private'))
 		self.ttl(kwargs.get('ttl'))
+		self.password(kwargs.get('password'))
 		self._settings = kwargs.get('settings', {})
 		self._buildTranslationTable()
 
@@ -78,6 +80,12 @@ class BasePaster(object):
 	def paste(self):
 		"""Contains the logic to post the content, you can use the httpRequest to make you life easier"""
 		return self.prepare()
+
+	def password(self, password = None):
+		"""Set/Get the password to access/encrypt the paste"""
+		if password == None:
+			return self._password
+		self._password = password
 
 	def poster(self, poster = None):
 		"""Set/Get the poster of the paste"""
@@ -135,6 +143,7 @@ class BasePaster(object):
 		self._description = ''
 		self._syntax = None
 		self._ttl = 60 * 24 * 30
+		self._password = None
 
 	def setting(self, name, default = None):
 		"""Reads the plugin settings"""
