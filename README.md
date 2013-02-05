@@ -81,10 +81,6 @@ Each of the following can be set in the constructor, or using their dedicated me
 - syntax: The global syntax of the paste;
 - ttl: The number of minutes the paste should be valid for, will be rounded at the closest higher value (or infinite).
 
-    # Example
-    p = Paster('pastie', syntax='php', ttl=60)
-    p.poster('Fred')
-
 Write your own pasters
 ----------------------
 
