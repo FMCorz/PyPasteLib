@@ -1,90 +1,104 @@
 # -*- coding: utf-8 -*-
 
+"""
+PyPasteLib
+
+A Python library to format and paste text.
+
+Copyright (c) 2013 Frédéric Massart - FMCorz.net
+
+Licensed under The MIT License
+Redistributions of files must retain the above copyright notice.
+
+http://github.com/FMCorz/PyPasteLib
+"""
+
 import urllib
 from base import BasePaster
 
+
 class CodevaultPaster(BasePaster):
 
-	_host = 'vault.somecode.me'
-	_uri = '/'
-	_method = 'POST'
-	_ssl = False
-	_defaultSyntax = 'no-highlight'
+    _host = 'cdv.lt'
+    _uri = '/'
+    _method = 'POST'
+    _ssl = False
+    _defaultSyntax = 'no-highlight'
 
-	def paste(self):
-		data = {
-			'code_data': self.prepare(),
-			'language_list': self.prepare_syntax()
-		}
+    def paste(self):
+        data = {
+            'code_data': self.prepare(),
+            'language_list': self.prepare_syntax()
+        }
 
-		data = urllib.urlencode(data)
-		headers = { 'Content-type': 'application/x-www-form-urlencoded' }
-		(resp, d, h) = self.httpRequest(
-				host=self._host,
-				uri=self._uri,
-				method=self._method,
-				ssl=self._ssl,
-				data=data,
-				headers=headers
-			)
+        data = urllib.urlencode(data)
+        headers = {'Content-type': 'application/x-www-form-urlencoded'}
+        (resp, d, h) = self.httpRequest(
+                host=self._host,
+                uri=self._uri,
+                method=self._method,
+                ssl=self._ssl,
+                data=data,
+                headers=headers
+            )
 
-		if resp.status == 302:
-			return 'http://' + self._host + h.get('location', False)
+        if resp.status == 302:
+            return 'http://' + self._host + h.get('location', False)
 
-		print resp.status, resp.reason
-		return False
+        print resp.status, resp.reason
+        return False
 
-	syntaxes = [
-		'no-highlight',
-		'1c',
-		'actionscript',
-		'apache',
-		'avrasm',
-		'axapta',
-		'bash',
-		'cmake',
-		'coffeescript',
-		'cpp',
-		'cs',
-		'css',
-		'd',
-		'delphi',
-		'diff',
-		'xml',
-		'django',
-		'dos',
-		'erlang-repl',
-		'erlang',
-		'glsl',
-		'go',
-		'haskell',
-		'http',
-		'ini',
-		'java',
-		'javascript',
-		'json',
-		'lisp',
-		'lua',
-		'markdown',
-		'matlab',
-		'mel',
-		'nginx',
-		'objectivec',
-		'parser3',
-		'perl',
-		'php',
-		'profile',
-		'python',
-		'r',
-		'rib',
-		'rsl',
-		'ruby',
-		'rust',
-		'scala',
-		'smalltalk',
-		'sql',
-		'tex',
-		'vala',
-		'vbscript',
-		'vhdl'
-	]
+    syntaxes = [
+        'no-highlight',
+        '1c',
+        'actionscript',
+        'apache',
+        'avrasm',
+        'axapta',
+        'bash',
+        'cmake',
+        'coffeescript',
+        'cpp',
+        'cs',
+        'css',
+        'd',
+        'delphi',
+        'diff',
+        'xml',
+        'django',
+        'dos',
+        'erlang-repl',
+        'erlang',
+        'glsl',
+        'go',
+        'haskell',
+        'http',
+        'ini',
+        'java',
+        'javascript',
+        'json',
+        'lisp',
+        'lua',
+        'markdown',
+        'matlab',
+        'mel',
+        'nginx',
+        'objectivec',
+        'parser3',
+        'perl',
+        'php',
+        'profile',
+        'python',
+        'r',
+        'rib',
+        'rsl',
+        'ruby',
+        'rust',
+        'scala',
+        'smalltalk',
+        'sql',
+        'tex',
+        'vala',
+        'vbscript',
+        'vhdl'
+    ]
