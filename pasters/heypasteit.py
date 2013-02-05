@@ -15,6 +15,7 @@ http://github.com/FMCorz/PyPasteLib
 
 import urllib
 from base import BasePaster
+from exceptions import *
 
 
 class HeypasteitPaster(BasePaster):
@@ -49,7 +50,6 @@ class HeypasteitPaster(BasePaster):
         if resp.status == 200 and not d.startswith('Error'):
             return 'http://' + self._host + '/clip/' + d.strip()
 
-        print resp.status, resp.reason
-        return False
+        raise PasteFailed('Paste failed. Response: %s (%s).' % (str(resp.status), str(resp.reason)))
 
     syntaxes = []

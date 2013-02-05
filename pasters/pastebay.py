@@ -15,6 +15,7 @@ http://github.com/FMCorz/PyPasteLib
 
 import urllib
 from base import BasePaster
+from exceptions import *
 
 
 class PastebayPaster(BasePaster):
@@ -50,8 +51,7 @@ class PastebayPaster(BasePaster):
         if resp.status == 302:
             return h.get('location', False)
 
-        print resp.status, resp.reason
-        return False
+        raise PasteFailed('Paste failed. Response: %s (%s). Expected: 302.' % (str(resp.status), str(resp.reason)))
 
     def prepare_ttl(self):
         ttl = self.ttl()

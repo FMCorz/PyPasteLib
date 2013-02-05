@@ -15,6 +15,7 @@ http://github.com/FMCorz/PyPasteLib
 
 import json
 from base import BasePaster
+from exceptions import *
 
 
 class GistPaster(BasePaster):
@@ -45,9 +46,8 @@ class GistPaster(BasePaster):
         if resp.status == 201:
             data = json.loads(d)
             return data.get('html_url', False)
-        else:
-            print resp.status, resp.reason
-            return False
+
+        raise PasteFailed('Paste failed. Response: %s (%s). Expected: 201.' % (str(resp.status), str(resp.reason)))
 
     def get_filename(self, identifier, syntax=None):
         identifier = str(identifier).replace('/', '_')

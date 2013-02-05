@@ -16,6 +16,7 @@ http://github.com/FMCorz/PyPasteLib
 import json
 import urllib
 from base import BasePaster
+from exceptions import *
 
 
 class KdePaster(BasePaster):
@@ -58,12 +59,10 @@ class KdePaster(BasePaster):
                 if hash:
                     url += '/' + hash
             except:
-                print data
-                url = False
+                raise PasteFailed('Paste failed. Data received: %s.' % (str(data)))
             return url
 
-        print resp.status, resp.reason
-        return False
+        raise PasteFailed('Paste failed. Response: %s (%s). Expected: 200.' % (str(resp.status), str(resp.reason)))
 
     def prepare_ttl(self):
         ttl = self.ttl()

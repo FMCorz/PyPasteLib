@@ -16,6 +16,7 @@ http://github.com/FMCorz/PyPasteLib
 import urllib
 import re
 from base import BasePaster
+from exceptions import *
 
 
 class SnipsourcePaster(BasePaster):
@@ -54,8 +55,7 @@ class SnipsourcePaster(BasePaster):
         if resp.status == 200 and r.search(d):
             return r.search(d).group(0)
 
-        print resp.status, resp.reason
-        return False
+        raise PasteFailed('Paste failed. Response: %s (%s).' % (str(resp.status), str(resp.reason)))
 
     def prepare_syntax(self, syntax=None, id=False, **kwargs):
         s = super(SnipsourcePaster, self).prepare_syntax(syntax=syntax, **kwargs)

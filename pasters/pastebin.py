@@ -15,6 +15,7 @@ http://github.com/FMCorz/PyPasteLib
 
 import urllib
 from base import BasePaster
+from exceptions import *
 
 
 class PastebinPaster(BasePaster):
@@ -27,7 +28,7 @@ class PastebinPaster(BasePaster):
     def __init__(self, **kwargs):
         BasePaster.__init__(self, **kwargs)
         if not self.setting('apikey'):
-            raise Exception('An API key is required')
+            raise MissingSetting('An API key is required')
 
     def paste(self):
         data = {
@@ -56,9 +57,8 @@ class PastebinPaster(BasePaster):
 
         if resp.status == 200:
             return d
-        else:
-            print resp.status, resp.reason
-            return False
+
+        raise PasteFailed('Paste failed. Response: %s (%s). Expected: 200.' % (str(resp.status), str(resp.reason)))
 
     def prepare_private(self):
         return 2 if self.private() else 0
