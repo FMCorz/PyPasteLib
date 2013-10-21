@@ -195,7 +195,7 @@ class BasePaster(object):
     _translationTable = None
     _aliases = [
         ['c', 'cpp', 'c++'],
-        ['javascript', 'js', 'jquery'],
+        ['javascript', 'js', 'jquery', 'json'],
         ['text', 'txt', 'plain_text', 'plain'],
         ['objectivec', 'objective-c', 'objc', 'm'],
         ['actionscript', 'as', 'actionscript3', 'as3'],
